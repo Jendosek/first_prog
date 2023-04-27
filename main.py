@@ -1,10 +1,14 @@
-#3
-def squere(**kwargs):
-    dict_1 = {}
-    if not kwargs:
+#4
+def squere(*args):
+    dict_1 = []
+    if not args:
         return None
-    for key, value in kwargs.items():
-        dict_1[key] = value ** 2
+    for value in args:
+        if value % 2 != 0:
+            dict_1.append(value)
     return dict_1
-print(squere(First = 1, Second = 2, Third = 3, Fourth = 4, Fifth = 5, Sixth = 6))
+print("Список не праних чисел:")
+print(squere(1,2,3,4,5,6,7,8,9,10,11))
+
+
 
