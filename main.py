@@ -1,10 +1,7 @@
-#3
-
-def sort(strings):
-    return sorted(strings, key=len)
-strings1 = input("Введіть рядок: ").split(' ')
-strings1 = list(strings1)
-x = sort(strings1)
-print(x)j
-
-
+#4
+def func_4(*args):
+    dict1 = {}
+    for name, age in args:
+        dict1[name] = age
+    return dict1
+print(func_4(*[('Alice', 25), ('Bob', 30), ('Charlie', 35)]))
