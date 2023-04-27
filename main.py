@@ -2,7 +2,7 @@
 def string(*args):
     if not args:
         return None
-    for arg in args:
-        print(arg, end=", ")
+    for argum in args:
+        print(argum, end=", ")
     return args
 string("Hello", "my", "new","programme")
