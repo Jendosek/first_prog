@@ -1,5 +1,8 @@
-#4
-def long_words(dictionary):
-    return [word for word in dictionary if len(word) >= 5]
-dict_1 = {'apple': 'a fruit', 'carrot': 'a vegetable', 'c++': 'programing language', 'bike': 'a vehicle'}
-print(long_words(dict_1))
+#1
+lst1 = [1, 3, 54, 6, 2 ,-12]
+def sum(lst):
+    sum = 0
+    for num in lst:
+        sum += num
+    return sum
+print(sum(lst1))
