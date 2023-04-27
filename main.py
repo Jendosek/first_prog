@@ -1,5 +1,5 @@
-#3
-def squares_list(lst):
-    return [i**2 for i in lst]
-lst_1 = [1, 2, 3, 4, 5, 6]
-print(squares_list(lst_1))
+#4
+def long_words(dictionary):
+    return [word for word in dictionary if len(word) >= 5]
+dict_1 = {'apple': 'a fruit', 'carrot': 'a vegetable', 'c++': 'programing language', 'bike': 'a vehicle'}
+print(long_words(dict_1))
