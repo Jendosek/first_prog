@@ -1,10 +1,5 @@
-#2
-def  count_vowels(s):
-    vowels = 'aeiouyAEIOUY'
-    count = 0
-    for letters in s:
-        if letters in vowels:
-            count += 1
-    return count
-s1 = input("Введіть рядок: ")
-print(count_vowels(s1))
+#3
+def squares_list(lst):
+    return [i**2 for i in lst]
+lst_1 = [1, 2, 3, 4, 5, 6]
+print(squares_list(lst_1))
