@@ -5,6 +5,6 @@ def sort(strings):
 strings1 = input("Введіть рядок: ").split(' ')
 strings1 = list(strings1)
 x = sort(strings1)
-print(x)
+print(x)j
 
 
