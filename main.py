@@ -1,11 +1,9 @@
-#2
-def string(s):
-    s = s.lower()
-    s = s.replace(" ", "")  # Видаляємо всі пробіли з рядка
-    if s == s[::-1]:
-        print("True")
-    else:
-        print("False")
-s1 = input("Введіть рядок: ")
-string(s1)
+#3
+def sort(strings):
+    return sorted(strings, key=len)
+strings1 = input("Введіть рядок: ").split(' ')
+strings1 = list(strings1)
+x = sort(strings1)
+print(x)
+
 
