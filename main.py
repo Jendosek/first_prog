@@ -1,10 +1,10 @@
-#2
-print("У списку:")
-lst = [i for i in range(1,10)]
-print(lst)
-def nums(*args):
-    if not args:
+#3
+def squere(**kwargs):
+    dict_1 = {}
+    if not kwargs:
         return None
-    print(f"Мінімальне число: {min(args)}, Максимальне число: {max(args)}")
-    return args
-nums(1, 2, 3, 4, 5, 6, 7, 8 ,9)
+    for key, value in kwargs.items():
+        dict_1[key] = value ** 2
+    return dict_1
+print(squere(First = 1, Second = 2, Third = 3, Fourth = 4, Fifth = 5, Sixth = 6))
+
