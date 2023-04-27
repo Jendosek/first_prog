@@ -1,8 +1,10 @@
-#1
-def string(*args):
+#2
+print("У списку:")
+lst = [i for i in range(1,10)]
+print(lst)
+def nums(*args):
     if not args:
         return None
-    for argum in args:
-        print(argum, end=", ")
+    print(f"Мінімальне число: {min(args)}, Максимальне число: {max(args)}")
     return args
-string("Hello", "my", "new","programme")
+nums(1, 2, 3, 4, 5, 6, 7, 8 ,9)
