@@ -1,14 +1,12 @@
 #4
-def squere(*args):
-    dict_1 = []
-    if not args:
-        return None
-    for value in args:
-        if value % 2 != 0:
-            dict_1.append(value)
-    return dict_1
-print("Список не праних чисел:")
-print(squere(1,2,3,4,5,6,7,8,9,10,11))
-
-
+def log(func):
+    def wrapper(*args, **kwargs):
+        res = func(*args, **kwargs)
+        print(f"Функція: {func.__name__}, Аргументи: {args}, Результат: {res}")
+        return res
+    return wrapper
+@log
+def example_func(x, y):
+    return x * y
+print(example_func(5, 7))
 
