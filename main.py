@@ -1,12 +1,15 @@
-#3
-def loggging(func):
-    def wrapper(t):
-        result = func(t)
-        print(f"Температура: {t} градусів Цельсія, становить {round(result)} градусів по Фаренгейту")
-        return result
+#1
+import time
+def timer(func):
+    def wrapper(*args):
+        res = func(args)
+        for i in range(1,6):
+            if 0 < i < 6:
+                time.sleep(3)
+                print(res)
+        return res
     return wrapper
-@loggging
-def example_func(t):
-    return (t * 1.8) + 32
-tempereture = 10
-example_func(tempereture)
+@timer
+def example_fuck(x):
+    return x
+example_fuck("Hello World!")
