@@ -1,13 +1,13 @@
-#1
-class Person:
-    def __init__(self, name):
-        self.name = name
-    def is_adult(self, age):
-        if 0 < age <= 18:
-            print("False (Менше 18 років)")
-        else:
-            print("True (Більше 18 років)")
-result = Person(name = "Zhenia")
-
-print(f"Ім'я: {result.name}")
-result.is_adult(20)
+#2
+class Rectangle:
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+        self.result_1 = width * height
+        self.result_2 = 2 * (width + height)
+name = Rectangle(width = 10, height = 6)
+print(f"Довжина = {name.width}")
+print(f"Висота  = {name.height}")
+print("--------------------------")
+print(f"Периметр прямокутника: {name.result_2}")
+print(f"Площа прямокутника: {name.result_1}")
