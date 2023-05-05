@@ -1,14 +1,13 @@
-#4
-class Bank:
-    def __init__(self, name, balance):
+#1
+class Person:
+    def __init__(self, name):
         self.name = name
-        self.balance = balance
-    def add_customer(self, customer):
-        self.customer = customer
+    def is_adult(self, age):
+        if 0 < age <= 18:
+            print("False (Менше 18 років)")
+        else:
+            print("True (Більше 18 років)")
+result = Person(name = "Zhenia")
 
-result = Bank("Zhenia", 1000)
-print(result.name)
-print(result.balance)
-result.add_customer("dod")
-
-
+print(f"Ім'я: {result.name}")
+result.is_adult(20)
