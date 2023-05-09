@@ -4,6 +4,7 @@ class School:
         self.name = name
         self.students = students  #список
         self.teachers = []
+        self.classes = []
     def admit_student(self, student):
         self.students.append(student)
         print(f'{student.name} був допущений до школи {self.name}')
@@ -18,6 +19,9 @@ class School:
     #1111
     def add_teacher(self, teacher):
         self.teachers.append(teacher)
+
+    def add_class(self, class_obj):
+        self.classes.append(class_obj)
 
 class Student:
     def __init__(self, name, grade):
@@ -56,3 +60,10 @@ class Teacher:
         self.name = name
         self.subject = subject
         self.classes = classes
+#2
+class Class:
+    def __init__(self, number):
+        self.number = number
+        self.students = []
+    def add_student(self, student):
+        self.students.append(student)
