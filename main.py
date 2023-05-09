@@ -1,9 +1,9 @@
-#///classes///dubl_2
-#1  симулятор навчального закладу
+#Практична робота
 class School:
     def __init__(self, name, students):
         self.name = name
         self.students = students  #список
+        self.teachers = []
     def admit_student(self, student):
         self.students.append(student)
         print(f'{student.name} був допущений до школи {self.name}')
@@ -15,6 +15,9 @@ class School:
             print(f'{expelled_student.name} був видалений з {self.name}')
         else:
             print(f'{student.name} е було знайдено в {self.name}')
+    #1111
+    def add_teacher(self, teacher):
+        self.teachers.append(teacher)
 
 class Student:
     def __init__(self, name, grade):
@@ -42,14 +45,14 @@ for student in my_school.students:
 
 my_school.admit_student(Student("Zhenia", 77))
 my_school.expel_student(Student("Volodya", 23))
+my_school.expel_student(Student("Gleb", 100))
 print("Оновлення")
 for student in my_school.students:
     print(student)
 
-
-
-"""multiply = lambda x, y: x*y
-print(multiply(2,5))
-numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-filtered_numbers = list(filter(lambda a: a % 2 == 0, numbers))
-print(filtered_numbers)"""
+#1
+class Teacher:
+    def __init__(self, name, subject, classes):
+        self.name = name
+        self.subject = subject
+        self.classes = classes
