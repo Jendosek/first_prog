@@ -16,6 +16,15 @@ class School:
             print(f'{expelled_student.name} був видалений з {self.name}')
         else:
             print(f'{student.name} е було знайдено в {self.name}')
+    #3
+    def get_school_statistics(self):
+        total_students = len(self.students)
+        if total_students == 0:
+            avg_grade = 0
+        else:
+            avg_grade = sum(student.grade for student in self.students) / total_students
+        return f"На {total_students} студентів середня оцінка по школі {avg_grade}"
+
     #1111
     def add_teacher(self, teacher):
         self.teachers.append(teacher)
@@ -36,6 +45,30 @@ class Student:
     def __str__(self):
         return f'{self.name} - Ранг {self.grade}'
 
+#1
+class Teacher:
+    def __init__(self, name, subject, classes):
+        self.name = name
+        self.subject = subject
+        self.classes = classes
+
+
+#2
+class Class:
+    def __init__(self, number):
+        self.number = number
+        self.students = []
+    #3
+    def add_student(self, student):
+        self.students.append(student)
+    def get_average_grade(self):
+        total_grade = 0
+        for student in self.students:
+            total_grade += student.grade
+        return total_grade / len(self.students)
+
+
+
 lisa = Student("Alisa", 6)
 masha = Student("Maria", 2)
 andriiko = Student("Andriy", 50)
@@ -54,16 +87,3 @@ print("Оновлення")
 for student in my_school.students:
     print(student)
 
-#1
-class Teacher:
-    def __init__(self, name, subject, classes):
-        self.name = name
-        self.subject = subject
-        self.classes = classes
-#2
-class Class:
-    def __init__(self, number):
-        self.number = number
-        self.students = []
-    def add_student(self, student):
-        self.students.append(student)
