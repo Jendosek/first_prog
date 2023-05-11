@@ -1,113 +1,57 @@
-#Практична робота
-class School:
-    def __init__(self, name, students):
-        self.name = name
-        self.students = students  #список
-        self.teachers = []
-        self.classes = []
-    def admit_student(self, student):
-        self.students.append(student)
-        print(f'{student.name} був допущений до школи {self.name}')
-    def expel_student(self, student):
-        expelled_student = next(filter(lambda s: s.name == student.name and
-                                                 s.grade == student.grade, self.students), None)
-        if expelled_student is not None:
-            self.students.remove(expelled_student)
-            print(f'{expelled_student.name} був видалений з {self.name}')
-        else:
-            print(f'{student.name} е було знайдено в {self.name}')
-    #3
-    def get_school_statistics(self):
-        total_students = len(self.students)
-        if total_students == 0:
-            avg_grade = 0
-        else:
-            avg_grade = sum(student.grade for student in self.students) / total_students
-        return f"На {total_students} студентів середня оцінка по школі {avg_grade}"
-
-    #1111
-    def add_teacher(self, teacher):
-        self.teachers.append(teacher)
-
-    def add_class(self, class_obj):
-        self.classes.append(class_obj)
-
-class Student:
-    def __init__(self, name, grade):
-        self.name = name
-        self.grade = grade
-    def promote(self):
-        self.grade += 1
-        print(f'{self.name} був підвищений {self.grade}')
-    def demote(self):
-        self.grade -= 1
-        print(f'{self.name} був понижений за гру в шахи {self.grade}')
-    def __str__(self):
-        return f'{self.name} - Ранг {self.grade}'
+"""# super()
 
 #1
-class Teacher:
-    def __init__(self, name, subject, classes):
+class Animal:
+    def __init__(self, name, age):
         self.name = name
-        self.subject = subject
-        self.classes = classes
+        self.age = age
+    def eat(self):
+        print(f"{self.name} кушає")
+class Dog(Animal):
+    def __init__(self, name, age, breed):
+        super().__init__(name, age)
+        self.breed = breed
+    def bark(self):
+        print(f"{self.name} гавкає")
+
+class Cat(Animal):
+    def __init__(self, name, age, breed):
+        super().__init__(name, age)
+        self.breed = breed
+    def bark(self):
+        print(f"{self.name} мяукає")
+dog1 = Dog("Denis", 5, "buldog")
+print(f"Ім'я собаки: {dog1.name}")
+print(f"Вік собакu: {dog1.age}")
+print(f"Порода собаки: {dog1.breed}")
+dog1.eat()
+dog1.bark()
+
+print()
+
+cat1 = Cat("Tima", 10, "british")
+print(f"Ім'я кота: {cat1.name}")
+print(f"Вік кота: {cat1.age}")
+print(f"Порода кота: {cat1.breed}")
+cat1.eat()
+cat1.bark()"""
+
 
 
 #2
-class Class:
-    def __init__(self, number):
-        self.number = number
-        self.students = []
-    #3
-    def add_student(self, student):
-        self.students.append(student)
-    def get_average_grade(self):
-        total_grade = 0
-        for student in self.students:
-            total_grade += student.grade
-        return total_grade / len(self.students)
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+    def __str__(self):
+        return f"Name: {self.name}, age: {self.age},"
+class Student(Person):
+    def __init__(self, name, age, student_id):
+        super().__init__(name, age)
+        self.student_id = student_id
+    def  __str__(self):
+        return super().__str__() + f" Student_ID: {self.student_id}"
 
-
-
-lisa = Student("Alisa", 6)
-masha = Student("Maria", 2)
-andriiko = Student("Andriy", 50)
-volodumer = Student("Volodya", 23)
-gleb = Student("Gleb", 100)
-
-class1 = Class(111)
-class2 = Class(222)
-class3 = Class(333)
-
-teacher_1 = Teacher("Voloddka", "real life", class3)
-teacher_2 = Teacher("Nastya", "astophysic", class2)
-
-my_school = School("ItStep", [lisa, masha, andriiko, volodumer, gleb])
-print("Початкові студенти")
-for student in my_school.students:
-    print(student)
-
-my_school.admit_student(Student("Zhenia", 77))
-my_school.expel_student(Student("Volodya", 23))
-my_school.expel_student(Student("Gleb", 100))
-my_school.add_class(class1)
-my_school.add_class(class2)
-my_school.add_class(class3)
-
-class1.add_student(volodumer)
-class2.add_student(lisa)
-class3.add_student(gleb)
-class3.add_student(masha)
-
-my_school.add_teacher(teacher_1)
-my_school.add_teacher(teacher_2)
-
-print("Оновлення")
-for student in my_school.students:
-    print(student)
-for class_obj in my_school.classes:
-    print(f"Класи які наявні в школі {class_obj.number}")
-for teacher in my_school.teachers:
-    print(f"Вчителі які працюють вв школі {teacher.name}")
-print(my_school.get_school_statistics())
-print(class1.get_average_grade())
+student1 = Student("Zhenia", 16, "95dr645h56")
+with open("student_info.txt", "w") as file:
+    file.write(str(student1))
