@@ -75,6 +75,13 @@ andriiko = Student("Andriy", 50)
 volodumer = Student("Volodya", 23)
 gleb = Student("Gleb", 100)
 
+class1 = Class(111)
+class2 = Class(222)
+class3 = Class(333)
+
+teacher_1 = Teacher("Voloddka", "real life", class3)
+teacher_2 = Teacher("Nastya", "astophysic", class2)
+
 my_school = School("ItStep", [lisa, masha, andriiko, volodumer, gleb])
 print("Початкові студенти")
 for student in my_school.students:
@@ -83,7 +90,24 @@ for student in my_school.students:
 my_school.admit_student(Student("Zhenia", 77))
 my_school.expel_student(Student("Volodya", 23))
 my_school.expel_student(Student("Gleb", 100))
+my_school.add_class(class1)
+my_school.add_class(class2)
+my_school.add_class(class3)
+
+class1.add_student(volodumer)
+class2.add_student(lisa)
+class3.add_student(gleb)
+class3.add_student(masha)
+
+my_school.add_teacher(teacher_1)
+my_school.add_teacher(teacher_2)
+
 print("Оновлення")
 for student in my_school.students:
     print(student)
-
+for class_obj in my_school.classes:
+    print(f"Класи які наявні в школі {class_obj.number}")
+for teacher in my_school.teachers:
+    print(f"Вчителі які працюють вв школі {teacher.name}")
+print(my_school.get_school_statistics())
+print(class1.get_average_grade())
