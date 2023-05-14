@@ -1,70 +1,54 @@
-#shop simulator
-class Clothing:
-    def __init__(self, material, name, price, size):
-        self.material = material
+#restaurant simulator
+class FoodItem:
+    def __init__(self, name, description, price):
         self.name = name
+        self.description = description
         self.price = price
-        self.size = size
 
-class Store:
-    def __init__(self, name, address):
-        self.name = name
-        self.address = address
-        self.inventory = []
+class Menu():
+    def __init__(self, iteams):
+        self.items = iteams
     def add_item(self, item):
-        self.inventory.append(item)
+        self.items.append(item)
     def remove_item(self, item):
-        self.inventory.remove(item)
-    def get_items(self):
-        return self.inventory
-    def search_items(self, key):
-        return [item for item in self.inventory if key in item.name]
+        self.items.remove(item)
+    def menu(self):
+        for item in self.items:
+            print(item.name + " - " + item.description + " - $" + str(item.price))
+class Order:
+    def __init__(self):
+        self.items = []
+    def add_item(self, item):
+        self.items.append(item)
+    def remove_item(self, item):
+        self.items.remove(item)
+    def total(self):
+        total = 0
+        for item in self.items:
+            total += item.price
+        return total
 
-class Customer:
-    def __init__(self, name, budget):
-        self.name = name
-        self.budget = budget
-        self.cart = []
-    def add_to_cart(self, item):
-        if item.price <= self.budget:
-            self.cart.append(item)
-            self.budget -= item.price
-            print(f"Предмет {item.name} був доданий до корзинки")
-        else:
-            print("Недостатньо коштів!")
-    def remove_from_cart(self, item):
-        self.cart.remove(item)
-    def view_cart(self):
-        return self.cart
-    def checkout(self):
-        total_price = sum(item.price for item in self.cart)
-        if total_price > self.budget:
-            print("Не достатньо коштів щоб завершити покупку!")
-        else:
-            self.budget -= total_price
-            print(f"Авторизація успішна. Залишок коштів: {total_price}.")
-            self.cart = []
+class Restaurant(Menu):
+    def __init__(self, menu):
+        super().__init__(self)
+        self.menu = menu
+        self.orders = []
+    def new_menu(self):
+        self.menu.display_menu()
+    def place_order(self, order):
+        self.orders.append(order)
+    def remove_order(self, order):
+        self.orders.remove(order)
+    def display_orders(self):
+        for order in self.orders:
+            for item in order.items:
+                print(item.name + " - $" + str(item.price))
+            print("Total: $" + str(order.calculate_total()) + "\n")
 
-shop = Store("Gucci", "вулиця Юності 4")
-print(shop.name + ', ' + shop.address)
-shop.add_item(Clothing("Бавовна", "Футболка", 10, "M"))
-shop.add_item(Clothing("Вовна", "Шорти", 40, "XL"))
-shop.add_item(Clothing("Поліестр", "Майка", 100, "L"))
-print()
+#вивід
 
-customer = Customer("John", 200)
-print(f"Покупець: {customer.name}, Баланс: {customer.budget}")
-print()
-results = shop.search_items("Шорти")
-if results:
-    customer.add_to_cart(results[0])
-results1 = shop.search_items("Майка")
-if results:
-    customer.add_to_cart(results1[0])
+with open("orders.txt", "w") as file:
+    file.write("Order #" + str())
+    for item in ...:
+        file.write(item.name + " - $" + str(item.price))
 
-customer.view_cart()
-customer.remove_from_cart(results[0])
-customer.remove_from_cart(results1[0])
-customer.view_cart()
-print()
-customer.checkout()
