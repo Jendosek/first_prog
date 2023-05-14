@@ -1,85 +1,70 @@
-import random
-class Animal:
-    def __init__(self , name, age, species, health , hunger , happiness):
-        self.species = species
+#shop simulator
+class Clothing:
+    def __init__(self, material, name, price, size):
+        self.material = material
         self.name = name
-        self.age = age
-        self.health = health
-        self.hunger = hunger
-        self.happiness = happiness
-    def grow(self):
-        self.age += 1
-        self.healt = random.randint(1 , 10)
-        self.hunger = random.randint(1, 20)
-        self.happiness = random.randint(1, 100)
-    def eat(self):
-        if self.hunger >= 10:
-            self.healt += random.randint(0 , 7)
-            self.happiness += random.randint(0 , 7)
-            self.hunger -= random.randint(5, 8)
-        else:
-            print("Тваринка не голодна")
-    def play(self):
-        if self.happiness <= 60:
-            self.happiness += random.randint(10, 20)
-        else:
-            print("Тваринка досить весела")
-    def __str__(self):
-        return f"Тваринка {self.name}, характеристика: " \
-               f"\nВік: {self.age} " \
-               f"\nВид {self.species}" \
-               f"\nСтан здоров'я {self.health}" \
-               f"\nСитість {self.hunger}" \
-               f"\nНастрій {self.happiness}"
-class Zoo():
-    def __init__(self, name, animals):
-        self.animals = animals
+        self.price = price
+        self.size = size
+
+class Store:
+    def __init__(self, name, address):
         self.name = name
-        super().__init__()
-        self.animals = []
+        self.address = address
+        self.inventory = []
+    def add_item(self, item):
+        self.inventory.append(item)
+    def remove_item(self, item):
+        self.inventory.remove(item)
+    def get_items(self):
+        return self.inventory
+    def search_items(self, key):
+        return [item for item in self.inventory if key in item.name]
 
-    def add_animal(self, animal):
-        self.animals.append(animal)
-        print(f'{animal.name} був доданий до зоопарку {self.name}')
-    def remove_animal(self, animal):
-        expelled_animals = next(filter(lambda s: s.name == animal.name and
-                                                 s.species == animal.species and
-                                                 s.age == animal.age and
-                                                 s.happiness == animal.happiness and
-                                                 s.happiness == animal.happiness and
-                                                 s.happiness == animal.happiness, self.animals), None)
-        if expelled_animals is not None:
-            self.animals.remove(expelled_animals)
-            print(f'{expelled_animals.name} був видалений з {self.name}')
+class Customer:
+    def __init__(self, name, budget):
+        self.name = name
+        self.budget = budget
+        self.cart = []
+    def add_to_cart(self, item):
+        if item.price <= self.budget:
+            self.cart.append(item)
+            self.budget -= item.price
+            print(f"Предмет {item.name} був доданий до корзинки")
         else:
-            print(f'{animal.name} nе було знайдено в {self.name}')
+            print("Недостатньо коштів!")
+    def remove_from_cart(self, item):
+        self.cart.remove(item)
+    def view_cart(self):
+        return self.cart
+    def checkout(self):
+        total_price = sum(item.price for item in self.cart)
+        if total_price > self.budget:
+            print("Не достатньо коштів щоб завершити покупку!")
+        else:
+            self.budget -= total_price
+            print(f"Авторизація успішна. Залишок коштів: {total_price}.")
+            self.cart = []
 
-    def feed_all(self, animal):
-        animal.hunger += random.randint(5,10)
-    def play_with(self, animal):
-        animal.happiness += random.randint(30,60)
-    def grow_all(self, animal):
-        animal.age += 1
-    def __str__(self):
-        return super().__str__() + f"Характеристика покращилась!"
+shop = Store("Gucci", "вулиця Юності 4")
+print(shop.name + ', ' + shop.address)
+shop.add_item(Clothing("Бавовна", "Футболка", 10, "M"))
+shop.add_item(Clothing("Вовна", "Шорти", 40, "XL"))
+shop.add_item(Clothing("Поліестр", "Майка", 100, "L"))
+print()
 
-animal1 = Animal("Жираф", 12, "В крапочку", 10, 12, 45)
-animal2 = Animal("Лев", 5, "Королевький", 15, 25, 40)
-animal3 = Animal("Мавпа", 7, "Буффа", 10, 15, 77)
-animal4 = Animal("Слон", 10, "Великий", 7, 25, 30)
+customer = Customer("John", 200)
+print(f"Покупець: {customer.name}, Баланс: {customer.budget}")
+print()
+results = shop.search_items("Шорти")
+if results:
+    customer.add_to_cart(results[0])
+results1 = shop.search_items("Майка")
+if results:
+    customer.add_to_cart(results1[0])
 
-my_zoo = Zoo("Зоопарк!!!", [animal1, animal2, animal3, animal4])
-print("Початковий список:")
-for animal in my_zoo.animals:
-    print(animal)
-
-
-my_zoo.add_animal(Animal("Тигр", 2, "полосатий", 20, 20, 70))
-print("Оновлення")
-for animal in my_zoo.animals:
-    print(animal)
-
-
-with open("student_info.txt", "w") as file:
-    for day in range(1, 11):
-        file.write(str(my_zoo.animals))
+customer.view_cart()
+customer.remove_from_cart(results[0])
+customer.remove_from_cart(results1[0])
+customer.view_cart()
+print()
+customer.checkout()
