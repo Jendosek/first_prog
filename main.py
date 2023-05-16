@@ -1,54 +1,43 @@
-#restaurant simulator
-class FoodItem:
-    def __init__(self, name, description, price):
-        self.name = name
-        self.description = description
-        self.price = price
+#2
+class InvalidPasswordError(Exception):
+    def __init__(self, password):
+        self.password = password
+class InvalidPasswordNumberError(Exception):
+    def __init__(self, password):
+        self.password = password
+def valide_password(password):
+    if len(password) < 8:
+        raise InvalidPasswordError(password)
+    for i in password:
+        if i != 1:
+            raise InvalidPasswordNumberError(password)
+        if i != 2:
+            raise InvalidPasswordNumberError(password)
+        if i != 3:
+            raise InvalidPasswordNumberError(password)
+        if i != 4:
+            raise InvalidPasswordNumberError(password)
+        if i != 5:
+            raise InvalidPasswordNumberError(password)
+        if i != 6:
+            raise InvalidPasswordNumberError(password)
+        if i != 7:
+            raise InvalidPasswordNumberError(password)
+        if i != 8:
+            raise InvalidPasswordNumberError(password)
+        if i != 9:
+            raise InvalidPasswordNumberError(password)
+        if i != 0:
+            raise InvalidPasswordNumberError(password)
+    else:
+        print("Пароль прийнято")
 
-class Menu():
-    def __init__(self, iteams):
-        self.items = iteams
-    def add_item(self, item):
-        self.items.append(item)
-    def remove_item(self, item):
-        self.items.remove(item)
-    def menu(self):
-        for item in self.items:
-            print(item.name + " - " + item.description + " - $" + str(item.price))
-class Order:
-    def __init__(self):
-        self.items = []
-    def add_item(self, item):
-        self.items.append(item)
-    def remove_item(self, item):
-        self.items.remove(item)
-    def total(self):
-        total = 0
-        for item in self.items:
-            total += item.price
-        return total
-
-class Restaurant(Menu):
-    def __init__(self, menu):
-        super().__init__(self)
-        self.menu = menu
-        self.orders = []
-    def new_menu(self):
-        self.menu.display_menu()
-    def place_order(self, order):
-        self.orders.append(order)
-    def remove_order(self, order):
-        self.orders.remove(order)
-    def display_orders(self):
-        for order in self.orders:
-            for item in order.items:
-                print(item.name + " - $" + str(item.price))
-            print("Total: $" + str(order.calculate_total()) + "\n")
-
-#вивід
-
-with open("orders.txt", "w") as file:
-    file.write("Order #" + str())
-    for item in ...:
-        file.write(item.name + " - $" + str(item.price))
-
+try:
+    password = input("Введіть пароль: ")
+    valide_password(password)
+except InvalidPasswordError as a:
+    print(f"Неправильне пароль {a.password} \n"
+          f"Треба мініімум 8 символів")
+except InvalidPasswordNumberError as b:
+    print(f"Неправильне пароль {b.password} \n"
+          f"Треба щоб пароль мав хоч 1 цифру")
