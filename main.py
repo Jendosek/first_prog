@@ -1,30 +1,45 @@
-#1
-"""try:
-    print("Start")
-    print("error")
-    print("Finish")
-except:
-    print("bro, it`s error💀💀💀")
-print("let`s get it")"""
-
-#2
-"""def checker(var_1):
-    if type(var_1) != str:
-        raise TypeError(f"Sorry!, ми не можемо працювати з класом {type(var_1)} будь ласка введіть в str")
+class InvalidUsernameError(Exception):
+    def __init__(self, username):
+        self.username = username
+class InvalidSymbolError(Exception):
+    def __init__(self, username):
+        self.username = username
+class InvalidWordError(Exception):
+    def __init__(self, username):
+        self.username = username
+def register_user(username):
+    if username == "gitler":
+        raise InvalidWordError(username)
+    elif username == "ziga":
+        raise InvalidWordError(username)
+    elif len(username) < 5:
+        raise InvalidUsernameError(username)
+    for i in username:
+        if i == "!":
+            raise InvalidSymbolError(username)
+        elif i == "?":
+            raise InvalidSymbolError(username)
+        elif i == ".":
+            raise InvalidSymbolError(username)
+        elif i == ",":
+            raise InvalidSymbolError(username)
+        elif i == "@":
+            raise InvalidSymbolError(username)
+        elif i == "#":
+            raise InvalidSymbolError(username)
     else:
-        return var_1
-a = 1234
-checker(a)
-print()
-print()"""
+        print("Вас зареєстровано")
 
-#3
-class BuildingError(Exception):
-    def __str__(self):
-        return "шото багато"
-def chech_material(amount, limit):
-    if amount > limit:
-        return "Достатньо матеріалів"
-    else:
-        raise BuildingError()
-print(chech_material(123,300))
+try:
+    username = input("Введіть ім'я користувача: ")
+    register_user(username)
+except InvalidUsernameError as a:
+    print(f"Неправильне ім'я користувача {a.username} \n"
+          f"Треба мініімум 5 символів")
+except InvalidSymbolError as b:
+    print(f"Неправильне ім'я користувача {b.username} \n"
+          f"Ім'я НЕ має містити @ # ! ? , .")
+except InvalidWordError as c:
+    print(f"Неправильне ім'я користувача {c.username} \n"
+          f"Треба адекватне ім'я")
+
