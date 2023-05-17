@@ -1,23 +1,30 @@
-#2
-class UserNotFoundError(Exception):
-    def __init__(self, username):
-        self.username = username
-class UserDatabase:
-    def __init__(self):
-        self.vocabulary = {"elin": {"name": "Zhenia", "age": 16},
-            ".waqz": {"name": "Zahar", "age": 20},
-            "8floven8": {"name": "Gleb", "age": 40} }
+#3
+class ValueError(Exception):
+    def __init__(self, temperature):
+        self.temperature = temperature
 
-    def get_user(self, username):
-        if username in self.vocabulary:
-            return self.vocabulary[username]
-        else:
-            raise UserNotFoundError(username)
+class TemperatureConverter:
+    def celsium_to_farengeit(self, celsium):
+        if celsium < -273:
+            raise ValueError(celsium)
+        return celsium * 9/5 + 32
 
-database = UserDatabase()
+    def farengeit_to_celsium(self, farengeit):
+        if farengeit < -460:
+            raise ValueError(farengeit)
+        return (farengeit - 32) * 5/9
+
+converter = TemperatureConverter()
+
+#Перший вивід
 try:
-    user = database.get_user("elin")
-    print(f"Користувач {user} є в цій базі даних")
-except UserNotFoundError as a:
-    print(f"Користувача {a.username} немає в цій базі даних\n"
-          f"Спробуйте ще раз")
+    temp_1 = converter.celsium_to_farengeit(20)
+    print(f"Температура у Фаренгейтах: {temp_1}")
+except ValueError as a:
+    print(f"Температура {a.temperature} нижче абсолютного нуля")
+#Другий вивід
+try:
+    temp_2 = converter.farengeit_to_celsium(50)
+    print(f"Температура у Цельсіях: {temp_2}")
+except ValueError as b:
+    print(f"Температура {b.temperature} нижче абсолютного нуля")
