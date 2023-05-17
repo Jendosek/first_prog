@@ -1,17 +1,17 @@
-#3
-class InvalidFileFormatError(Exception):
-    def __init__(self, f):
-        self.f = f
-def read_file(f):
-    try:
-        with open(f, "r") as file:
-            content = file.read()
-            print("Вміст файлу", content)
-    except IOError:
-        raise InvalidFileFormatError(f)
-
+#1
+class InvalidUrlError(Exception):
+    def __init__(self, url):
+        self.url = url
+def fetch_data_from_url(url):
+    if url != "https://mystat.itstep.org/ru/main/homework/page/index":
+        raise InvalidUrlError(url)
+    else:
+        print("Успішно!")
+        print()
 try:
-    read_file(input("Введіть назву файлу: "))
-except InvalidFileFormatError as a:
-    print(f"Невірний формат файлу {a.f} \n"
-          f"Підримуються тільки текстові файли")
+    print("Вхід до майстату")
+    url = input("Введіть ключ до сайту Mystat: ")
+    fetch_data_from_url(url)
+except InvalidUrlError as a:
+    print(f"Невірна силка {a.url}\n"
+          f"Введіть силку правильно")
