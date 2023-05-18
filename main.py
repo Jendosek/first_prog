@@ -1,45 +1,14 @@
-class InvalidUsernameError(Exception):
-    def __init__(self, username):
-        self.username = username
-class InvalidSymbolError(Exception):
-    def __init__(self, username):
-        self.username = username
-class InvalidWordError(Exception):
-    def __init__(self, username):
-        self.username = username
-def register_user(username):
-    if username == "gitler":
-        raise InvalidWordError(username)
-    elif username == "ziga":
-        raise InvalidWordError(username)
-    elif len(username) < 5:
-        raise InvalidUsernameError(username)
-    for i in username:
-        if i == "!":
-            raise InvalidSymbolError(username)
-        elif i == "?":
-            raise InvalidSymbolError(username)
-        elif i == ".":
-            raise InvalidSymbolError(username)
-        elif i == ",":
-            raise InvalidSymbolError(username)
-        elif i == "@":
-            raise InvalidSymbolError(username)
-        elif i == "#":
-            raise InvalidSymbolError(username)
-    else:
-        print("Вас зареєстровано")
-
-try:
-    username = input("Введіть ім'я користувача: ")
-    register_user(username)
-except InvalidUsernameError as a:
-    print(f"Неправильне ім'я користувача {a.username} \n"
-          f"Треба мініімум 5 символів")
-except InvalidSymbolError as b:
-    print(f"Неправильне ім'я користувача {b.username} \n"
-          f"Ім'я НЕ має містити @ # ! ? , .")
-except InvalidWordError as c:
-    print(f"Неправильне ім'я користувача {c.username} \n"
-          f"Треба адекватне ім'я")
-
+#2
+my_list = [1,2,3,4,5,6,7,8,9]
+class SquareGenerator:
+    def __init__(self):
+        if isinstance(my_list, list) is True:
+            print(my_list)
+        elif isinstance(my_list, list) is not True:
+            TypeError("Brroo 💀")
+    def my_generator(self, name):
+        for num in my_list:
+            num = num**2
+            yield num
+    for num in my_generator("", my_list):
+        print(num)
