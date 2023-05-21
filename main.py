@@ -12,5 +12,3 @@ class PasswordGenerator:
 generator = PasswordGenerator(10, 'qwertyQWERTY1234!@#$%^_-.')
 for i in range(3):
     print(f"Ваш пароль: {generator.genarate_password()}")
-
-
