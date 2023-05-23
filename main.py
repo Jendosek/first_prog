@@ -1,21 +1,19 @@
-#2
-def average_closure():
-    numbers = []
-    def add_number(number):
-        numbers.append(number)
-    def get_average():
-        print(numbers)
-        return sum(numbers) / len(numbers)
-    return add_number, get_average
-add_number, get_average = average_closure()
-add_number(1)
-add_number(2)
-add_number(3)
-add_number(4)
-add_number(5)
-add_number(6)
-add_number(7)
-add_number(8)
-add_number(9)
-print(f"Середнє число зі списку: {get_average()}")
+#3
+import random
+import logging
 
+logging.basicConfig(filename='info.txt',
+                    level=logging.DEBUG,
+                    format='%(asctime)s - %(levelname)s - %(message)s')
+def generate_numbers(file_path, n):
+    try:
+        with open(file_path, "w") as file:
+            for i in range(n):
+                random_number = random.randint(1, 10)
+                file.write(str(random_number) + '\n')
+                logging.info(f"рандомне число: {random_number}")
+    except Exception as e:
+        logging.error(f"Error: {e}")
+file_path = "numbers.txt"
+num_numbers = 5
+generate_numbers(file_path, num_numbers)
