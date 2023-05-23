@@ -9,7 +9,7 @@ def generate_numbers(file_path, n):
     try:
         with open(file_path, "w") as file:
             for i in range(n):
-                random_number = random.randint(1, 10)
+                random_number = random.randint(1, 100)
                 file.write(str(random_number) + '\n')
                 logging.info(f"рандомне число: {random_number}")
     except Exception as e:
