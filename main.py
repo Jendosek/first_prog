@@ -1,36 +1,17 @@
-#1
+#2
 import logging
-class Calculator:
-    def __init__(self):
-        self.logger = logging.getLogger("Calculator")
-        self.logger.setLevel(logging.INFO)
-        self.logger.addHandler(logging.StreamHandler())
 
-    def add(self, a, b):
-        result = a + b
-        self.logger.info(f" {a} + {b} = {result}")
-        return result
-    def minus(self, a, b):
-        result = a - b
-        self.logger.info(f" {a} - {b} = {result}")
-        return result
-    def mnog(self, a, b):
-        result = a * b
-        self.logger.info(f" {a} * {b} = {result}")
-        return result
-    def dilen(self, a, b):
-        result = a / b
-        if b == 0:
-            try:
-                a / b
-            except ValueError:
-                raise ValueError("error")
-        else:
-            self.logger.info(f" {a} / {b} = {result}")
-        return result
-calc = Calculator()
-calc.add(1,3)
-calc.mnog(1,5)
-calc.minus(1,5)
-calc.dilen(1,5)
-calc.dilen(1,0)
+logger = ''
+print("Щоб вийти з програми натисніть q")
+while logger != "q":
+    logger = input("Введіть текст (без чисел): ")
+    logging.basicConfig(level=logging.INFO,
+                    filename= "logss.log",
+                    filemode= 'w',
+                    format='%(asctime)s - %(levelname)s - %(message)s')
+    logging.info(f"Інфформація {logger} була додана до файлу")
+    for i in logger:
+        if i == "1" or i == "2" or i == "3" or i == "4" or i == "5" or i == "6" or i == "7" or i == "8" or i == "9" or i == "0":
+            logging.error(f"число ({i}) вводити неможна")
+    with open("only.txt", 'w') as file:
+        file.write(logger)
