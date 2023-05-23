@@ -1,26 +1,36 @@
-import logging  #стандартна бібліотека для логування програм
-logging.basicConfig(level=logging.DEBUG,
-                    filename= "logs.log",
-                    filemode= 'w',
-                    format='%(asctime)s - %(levelname)s - %(message)s')
-logging.debug("debug")
-logging.info("info")
-logging.error("error")
-logging.warning("warning")
-logging.critical("critical")
-try:
-    print(10/0)
-except Exception:
-    logging.exception("na 0 dilitu ne mogna")
+#1
 import logging
+class Calculator:
+    def __init__(self):
+        self.logger = logging.getLogger("Calculator")
+        self.logger.setLevel(logging.INFO)
+        self.logger.addHandler(logging.StreamHandler())
 
-
-def factorial(n):
-    logging.info(f"Розпочато обччислення факторіалу числа {n}")
-    result = 1
-    for i in range(1, n + 1):
-        result *= i
-    logging.info(f"Обччислення факторіалу числа {n} завершено. Резуультат {result}")
-    return result
-logging.basicConfig(level=logging.INFO)
-factorial(5)
+    def add(self, a, b):
+        result = a + b
+        self.logger.info(f" {a} + {b} = {result}")
+        return result
+    def minus(self, a, b):
+        result = a - b
+        self.logger.info(f" {a} - {b} = {result}")
+        return result
+    def mnog(self, a, b):
+        result = a * b
+        self.logger.info(f" {a} * {b} = {result}")
+        return result
+    def dilen(self, a, b):
+        result = a / b
+        if b == 0:
+            try:
+                a / b
+            except ValueError:
+                raise ValueError("error")
+        else:
+            self.logger.info(f" {a} / {b} = {result}")
+        return result
+calc = Calculator()
+calc.add(1,3)
+calc.mnog(1,5)
+calc.minus(1,5)
+calc.dilen(1,5)
+calc.dilen(1,0)
