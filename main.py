@@ -1,17 +1,15 @@
-#2
+#3
+import random
 import logging
 
-logger = ''
-print("Щоб вийти з програми натисніть q")
-while logger != "q":
-    logger = input("Введіть текст (без чисел): ")
-    logging.basicConfig(level=logging.INFO,
-                    filename= "logss.log",
-                    filemode= 'w',
-                    format='%(asctime)s - %(levelname)s - %(message)s')
-    logging.info(f"Інфформація {logger} була додана до файлу")
-    for i in logger:
-        if i == "1" or i == "2" or i == "3" or i == "4" or i == "5" or i == "6" or i == "7" or i == "8" or i == "9" or i == "0":
-            logging.error(f"число ({i}) вводити неможна")
-    with open("only.txt", 'w') as file:
-        file.write(logger)
+def last_task(file_path, num):
+    try:
+        with open(file_path, 'w') as file:
+            for i in range(num):
+                rad = random.randint(1,100)
+                file.write(str(rad) + '\n')
+                logging.info(f"Рандомне число: {rad}")
+    except Exception as e:
+        logging.error(f"error: {e}")
+file_path = "input_random.txt"
+last_task("input_random.txt",  input("Кількість генерованих чисел: "))
