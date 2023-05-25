@@ -1,10 +1,11 @@
 import requests
 from bs4 import BeautifulSoup
+response = requests.get("https://uk.wikipedia.org/")
 
-response = requests.get("https://www.example.com/")
-try:
+if response.status_code == 200:
     soup = BeautifulSoup(response.content, "html.parser")
-    title = soup.find("title").text
-    print(title)
-except:
-    print(f"Немає підключення {response.status_code}!")
+    img = soup.find_all("img")
+    for i in img:
+        print('https://' + i["src"])
+else:
+    print(f"немає підклчення {response.status_code}")
