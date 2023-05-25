@@ -8,5 +8,7 @@ if response.status_code == 200:
     for link in soup_list:
         href = link.get('href')
         print(href)
+        if href.startswith("https://"):
+            print(href)
 else:
     print(f"немає підклчення {response.status_code}")
