@@ -1,19 +1,14 @@
-#3
-import random
-import logging
+#1
+import requests
+from bs4 import BeautifulSoup
 
-logging.basicConfig(filename='info.txt',
-                    level=logging.DEBUG,
-                    format='%(asctime)s - %(levelname)s - %(message)s')
-def generate_numbers(file_path, n):
-    try:
-        with open(file_path, "w") as file:
-            for i in range(n):
-                random_number = random.randint(1, 100)
-                file.write(str(random_number) + '\n')
-                logging.info(f"рандомне число: {random_number}")
-    except Exception as e:
-        logging.error(f"Error: {e}")
-file_path = "numbers.txt"
-num_numbers = 5
-generate_numbers(file_path, num_numbers)
+response = requests.get("https://uk.wikipedia.org/wiki/")
+if response.status_code == 200:
+    soup = BeautifulSoup(response.content, "html.parser")
+    for i in soup.find_all('h2'):
+        i.extract()
+    text = ' '.join(soup.stripped_strings)
+    words = text.split()
+    print(words)
+else:
+    print(f"немає підклчення {response.status_code}")
