@@ -1,15 +1,20 @@
-#3
-import random
-import logging
+# audit_work #
+"""import urllib.request
+opener = urllib.request.build_opener()
+response = opener.open("https://httpbin.org/get")
+print(response.read())"""
 
-def last_task(file_path, num):
-    try:
-        with open(file_path, 'w') as file:
-            for i in range(num):
-                rad = random.randint(1,100)
-                file.write(str(rad) + '\n')
-                logging.info(f"Рандомне число: {rad}")
-    except Exception as e:
-        logging.error(f"error: {e}")
-file_path = "input_random.txt"
-last_task("input_random.txt",  input("Кількість генерованих чисел: "))
+
+import requests
+response = requests.get("https://coinmarketcap.com/")
+print(response.text)
+response_parse = response.text.split('<span>')
+for elem in response_parse:
+    if elem.startswith("$"):
+        print(elem)
+from bs4 import BeautifulSoup
+if response.status_code == 200:
+    soup = BeautifulSoup(response.text, features = "html.parser")
+    soup_list = soup.find_all('a', {'href': '/currencies/bitcoin/markets/'})
+    res = soup_list[0].find('span')
+    print(f"Курс біткоїна: {res.text}")
